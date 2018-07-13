@@ -53,10 +53,7 @@ awk -F "\t" '{print $2, "\t", $3, "\t", $4}' file.txt
 
 ```{r}
 
-start=2
-end=7
-
-awk -v start=$start -v end=$end -f Utils/Print.fields.interval.awk  file.txt
+awk -v start=2 -v end=5 -f Utils/Print.fields.interval.awk  file.txt
 
 ```
-With the example above it will print the fields from 2 until 7
+With the example above it will print the fields from *2* until *5*
