@@ -7,18 +7,18 @@
 
 ## 1) <a id='rows'></a> Rows into columns:
 
-Description:
+**Description:**
 
 Receives rows and convert them into columns and count them
 
-Usage:
+**Usage:**
 
 ```{r}
 
 head -1 some_file.txt | Utils/rows.to.columns.count.sh
 
 ```
-Example of output:
+**Example of output:**
 
 <pre>
     Rows to Columns script:
