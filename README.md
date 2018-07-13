@@ -3,9 +3,11 @@
 ### Content:
 
 1. [Rows into columns](#rows)
-2. [Print a specific field interval](#interval)
+2. [Print a range of fields](#interval)
 
 ## 1) <a id='rows'></a> Rows into columns:
+
+*rows.to.columns.count.sh*
 
 **Description:**
 
@@ -33,3 +35,28 @@ head -1 some_file.txt | Utils/rows.to.columns.count.sh
     End of the script
     -----------------
 </pre>
+
+## 2) <a id='interval'></a> Print a range of fields
+
+*Print.fields.interval.awk*
+
+**Description:**
+
+Some times you have a tab separated file and you want to print a interval of fields using **awk** and it is prone to errors to type manually the fields using the following code:
+
+```{r}
+
+awk -F "\t" '{print $2, "\t", $3, "\t", $4}' file.txt
+
+```
+**Usage:**
+
+```{r}
+
+start=2
+end=7
+
+awk -v start=$start -v end=$end -f Utils/Print.fields.interval.awk  file.txt
+
+```
+With the example above it will print the fields from 2 until 7
