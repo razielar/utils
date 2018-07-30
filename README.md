@@ -4,6 +4,7 @@
 
 1. [Rows into columns](#rows)
 2. [Print a range of fields](#interval)
+3. [Convert GTF into a Bed file](#convert)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -57,3 +58,19 @@ awk -v start=2 -v end=5 -f Utils/Print.fields.interval.awk  file.txt
 
 ```
 With the example above it will print the fields from *2* until *5*
+
+## 3) <a id='convert'></a> Convert GTF into a Bed file
+
+*gtf.to.bed.R*
+
+**Description:**
+
+Within GTF files the 4th and 5th fields are the start and end of a genomic feature (gene, transcript, exon, etc.) however the *GTF* is **1-based (closed intervals)** whereas *Bed* is **0-counted (half-open intervals)**. This script do the conversion and prints the Bed file. 
+
+**Usage:**
+
+```{r}
+
+cat GTF.file.gtf | Utils/gtf.to.bed.R
+
+```
