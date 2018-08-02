@@ -1,0 +1,16 @@
+#!/usr/bin/env python
+
+### This script uses Python3
+
+########## Libraries: biopython 1.72
+
+from Bio import SeqIO
+from Bio.Seq import Seq
+import sys
+
+########## Reverse complementary file:
+
+reverse_complementary_file = ( i.reverse_complement(id=i.id, description= "reverse_complement") \
+    for i in SeqIO.parse("/home/razielar/Downloads/tmp.Transcripts.negative.strand.fasta", "fasta"))
+
+SeqIO.write(reverse_complementary_file, "/home/razielar/Downloads/tmp.Transcripts.negative.RC.fasta", "fasta")
