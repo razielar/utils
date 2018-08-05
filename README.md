@@ -75,13 +75,13 @@ Within GTF files the 4th and 5th fields are the start and end of a genomic featu
 cat GTF.file.gtf | Utils/gtf.to.bed.R
 
 ```
-## 4) <a id='rows'></a> DNA reverse complementary
+## 4) <a id='complementary'></a> DNA reverse complementary
 
 *DNA.reverse.complementary.py*
 
 **Description:**
 
-The aim of this script is to change the direction of a DNA sequence from 5'-3' to 3'-5' and vice versa. 
+The aim of this script is to change the direction of a DNA sequence from 5'-3' to 3'-5' and vice versa.
 
 **Usage:**
 
