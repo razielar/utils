@@ -5,6 +5,7 @@
 1. [Rows into columns](#rows)
 2. [Print a range of fields](#interval)
 3. [Convert GTF into a Bed file](#convert)
+4. [DNA reverse complementary](#complementary)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -65,12 +66,27 @@ With the example above it will print the fields from *2* until *5*
 
 **Description:**
 
-Within GTF files the 4th and 5th fields are the start and end of a genomic feature (gene, transcript, exon, etc.) however the *GTF* is **1-based (closed intervals)** whereas *Bed* is **0-counted (half-open intervals)**. This script do the conversion and prints the Bed file. 
+Within GTF files the 4th and 5th fields are the start and end of a genomic feature (gene, transcript, exon, etc.) however the *GTF* is **1-based (closed intervals)** whereas *Bed* is **0-counted (half-open intervals)**. This script do the conversion and prints the Bed file.
 
 **Usage:**
 
 ```{r}
 
 cat GTF.file.gtf | Utils/gtf.to.bed.R
+
+```
+## 4) <a id='rows'></a> DNA reverse complementary
+
+*DNA.reverse.complementary.py*
+
+**Description:**
+
+The aim of this script is to change the direction of a DNA sequence from 5'-3' to 3'-5' and vice versa. 
+
+**Usage:**
+
+```{r}
+
+cat DNA.sequence.negative.strand.fasta | Utils/DNA.reverse.complementary.py
 
 ```
