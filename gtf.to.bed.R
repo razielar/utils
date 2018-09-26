@@ -19,6 +19,8 @@ option_list <- list(
               help = "input file [default=%default]", metavar = "character"),
   make_option("--header", default = FALSE, 
               help = "the input file has header [default=%default]"),
+  make_option(c("-f", "--field"), type = "character", default = 2,
+              help = "The second field ('Transcript_ID') is used to produce the Bed file [default= %default]"),
   make_option(c("-o", "--output"), type = "character", default = "Gtf.to.Bed.out.bed",
               help="output file name. Must have a bed extension (e.g. 'What.ever.bed') [default= %default]", 
               metavar="character")
@@ -46,8 +48,9 @@ if (opt$input == "stdin") {
 #                     header = opt$header)
 
 ### Change the GTF 1-based count to BED 0-based
-### Formula: 0-based: start = start-1; end = end
-  
+### Formula: 0-based (BED_file): start = start-1; end = end
+### More-information: http://genome.ucsc.edu/blog/the-ucsc-genome-browser-coordinate-counting-systems/
+
 ### 1) Chr, start, end:
   
 Bed_file <- Input[,c(1,4,5)]
@@ -56,15 +59,14 @@ Bed_file$V4 <- (Bed_file[,2] -1)
   
 ### 2) ID 
   
-ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% lapply(function(x){y <- x[2]}) %>% unlist()
-  
-ID <- sub(" ", "", ID) 
+ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% 
+  lapply(function(x){y <- x[ as.numeric(opt$field) ]}) %>% unlist() %>% sub(" ", "", .)
   
 ID <- colsplit(ID, " ", c("Type", "ID"))
   
 Bed_file$ID <- ID$ID
   
-cat("The ID used is the 'Transcript_ID'", "\n")
+cat("The ID:", opt$field ,"was used to produce the Bed_file", "\n")
 cat("GTF file into Bed file", "\n")
   
 write.table(Bed_file, file = opt$output, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
