@@ -17,13 +17,15 @@ option_list <- list(
   
   make_option(c("-i", "--input"), type = "character", default = "stdin",
               help = "input file [default=%default]", metavar = "character"),
-  make_option("--header", default = FALSE, 
+  make_option("--header", default = FALSE, type="logical",
               help = "the input file has header [default=%default]"),
   make_option(c("-f", "--field"), type = "character", default = 2,
               help = "The second field ('Transcript_ID') is used to produce the Bed file [default= %default]"),
   make_option(c("-o", "--output"), type = "character", default = "Gtf.to.Bed.out.bed",
               help="output file name. Must have a bed extension (e.g. 'What.ever.bed') [default= %default]", 
-              metavar="character")
+              metavar="character"),
+  make_option(c("-l", "--length"), type = "logical", default = FALSE,
+              help = "You want to calculate the length of the Genomic Feature [default=%default]")
   
 )
 
@@ -59,18 +61,28 @@ Bed_file$V4 <- (Bed_file[,2] -1)
   
 ### 2) ID 
 
-  ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% 
+ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% 
     lapply(function(x){y <- x[ as.numeric(opt$field) ]; trimws(y) }) %>% unlist() 
   
 ID <- colsplit(ID, " ", c("Type", "ID"))
   
 Bed_file$ID <- ID$ID
-  
-cat("The ID:", opt$field ,"was used to produce the Bed_file", "\n")
-cat("GTF file into Bed file", "\n")
-  
-write.table(Bed_file, file = opt$output, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
-  
 
-
-
+if(opt$length){
+  
+  Bed_file$Length <- abs(Bed_file[,2] - Bed_file[,3])
+  
+  cat("The ID:", opt$field ,"was used to produce the Bed_file", "\n")
+  cat("GTF file into Bed file", "\n")
+  
+  write.table(Bed_file, file = opt$output, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
+  
+} else{
+  
+  cat("The ID:", opt$field ,"was used to produce the Bed_file", "\n")
+  cat("GTF file into Bed file", "\n")
+  
+  write.table(Bed_file, file = opt$output, sep = "\t", quote = FALSE, col.names = FALSE, row.names = FALSE)
+  
+}
+  
