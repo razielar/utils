@@ -59,17 +59,8 @@ Bed_file$V4 <- (Bed_file[,2] -1)
   
 ### 2) ID 
 
-if(as.numeric(opt$field) == 1 ){ #Only in the First field there's not a white space
-  
   ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% 
-    lapply(function(x){y <- x[ as.numeric(opt$field) ]}) %>% unlist() 
-  
-} else {
-  
-  ID <- strsplit(Input[,9], split = ";", fixed = TRUE) %>% 
-    lapply(function(x){y <- x[ as.numeric(opt$field) ]}) %>% unlist() %>% sub(" ", "", .)
-  
-}
+    lapply(function(x){y <- x[ as.numeric(opt$field) ]; trimws(y) }) %>% unlist() 
   
 ID <- colsplit(ID, " ", c("Type", "ID"))
   
