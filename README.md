@@ -110,7 +110,7 @@ Script to create a file including all orthology relationships for the 4 fly spec
 **WARNING:** prints all orthologs, including paralogs; paralogs are assigned with the same *myID*
 
 **5.1) gene_list:** one column with gene_id like: FBgn0031208<br>
-**5.2) orthologs_list:** obtained from the [Flybase](ftp://ftp.flybase.net/releases/FB2018_03/precomputed_files/orthologs/)
+**5.2) orthologs_list:** obtained from the [Flybase](http://flybase.org/)
 
 ```{r}
 
