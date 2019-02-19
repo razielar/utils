@@ -6,6 +6,7 @@
 2. [Print a range of fields](#interval)
 3. [Convert GTF into a Bed file](#convert)
 4. [DNA reverse complementary](#complementary)
+5. [Flybase Orthology relationship](#ortho)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -96,3 +97,31 @@ The aim of this script is to change the direction of a DNA sequence from 5'-3' t
 cat DNA.sequence.negative.strand.fasta | Utils/DNA.reverse.complementary.py
 
 ```
+## 5) <a id='ortho'></a> Flybase Orthology relationship
+
+*Flybase_orthoParalogs.py*
+
+*Written in Python 3.5.4*
+**Description:**
+
+Script to create a file including all orthology relationships for the 4 fly species [*D_me*, *D_sechelia* (phylogenetically close), *D_persimilis* (halfway), & *D_willistoni* (far away)]
+
+**WARNING:** prints all orthologs, including paralogs; paralogs are assigned with the same *myID*
+
+**5.1) gene_list:** one column with gene_id like: FBgn0031208<br>
+**5.2) orthologs_list:** obtained from the [Flybase](ftp://ftp.flybase.net/releases/FB2018_03/precomputed_files/orthologs/)
+
+```{r}
+
+python Flybase_orthoParalogs.py gene_list orthologs_list output_name
+
+```
+**Example output:**
+
+| D_me  |  D_sec | D_per |  D_wil  |  myID |
+|----------|:-------------:|------:| ------:| ------:|
+| FBgn0031208				 | FBgn0177630 | FBgn0150621  | FBgn0212170 | myID1 |
+| 		FBgn0031208		 | FBgn0177629 | FBgn0150620  | FBgn0212170 | myID1 |
+| FBgn0031208	| FBgn0177629 | FBgn0160043  | FBgn0212170 | myID1  |
+| 	FBgn0002121		 | FBgn0171620 | FBgn0151538  | FBgn0226562  | myID2 |
+| 	FBgn0031209			 | FBgn0171619 | FBgn0151527  | FBgn0218492 | myID3 |
