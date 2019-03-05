@@ -128,9 +128,10 @@ python Flybase_orthoParalogs.py gene_list orthologs_list output_name
 | 	FBgn0002121		 | FBgn0171620 | FBgn0151538  | FBgn0226562  | myID2 |
 | 	FBgn0031209			 | FBgn0171619 | FBgn0151527  | FBgn0218492 | myID3 |
 
-## 6) Synteny analysis
+## 6) <a id='synteny'></a> Synteny analysis
 
 *synteny_Flies.4sp.py*
+
 *Written in Python 3.5.4*
 
 **Description:**
@@ -138,7 +139,7 @@ python Flybase_orthoParalogs.py gene_list orthologs_list output_name
 ```{r}
 
 python synteny_Flies.4sp.py  dme_geneorder.list.txt\
-dpse.gene.order.list.txt\ 
+dpse.gene.order.list.txt\
 Orthologs.out\
 Out.synteny.txt\
 3 3 1 'yes'
