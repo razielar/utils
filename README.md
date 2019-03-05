@@ -7,6 +7,7 @@
 3. [Convert GTF into a Bed file](#convert)
 4. [DNA reverse complementary](#complementary)
 5. [Flybase Orthology relationship](#ortho)
+6. [Synteny analysis](#synteny)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -126,3 +127,20 @@ python Flybase_orthoParalogs.py gene_list orthologs_list output_name
 | FBgn0031208	| FBgn0177629 | FBgn0160043  | FBgn0212170 | myID1  |
 | 	FBgn0002121		 | FBgn0171620 | FBgn0151538  | FBgn0226562  | myID2 |
 | 	FBgn0031209			 | FBgn0171619 | FBgn0151527  | FBgn0218492 | myID3 |
+
+## 6) Synteny analysis
+
+*synteny_Flies.4sp.py*
+*Written in Python 3.5.4*
+
+**Description:**
+
+```{r}
+
+python synteny_Flies.4sp.py  dme_geneorder.list.txt\
+dpse.gene.order.list.txt\ 
+Orthologs.out\
+Out.synteny.txt\
+3 3 1 'yes'
+
+```
