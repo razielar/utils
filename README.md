@@ -8,6 +8,7 @@
 4. [DNA reverse complementary](#complementary)
 5. [Flybase Orthology relationship](#ortho)
 6. [Synteny analysis](#synteny)
+7. [Convert a txt file into a csv](#csv)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -143,5 +144,21 @@ dpse.gene.order.list.txt\
 Orthologs.out\
 Out.synteny.txt\
 3 3 1 'yes'
+
+```
+## 7) <a id='csv'></a> Convert a txt file into a csv
+
+*convert.txt.to.csv.py*
+
+*Written in Python 3.5.4*
+
+**Description:**
+
+```{r}
+
+cat file.txt | python ~/Utils/convert.txt.to.csv.py
+
+cat file.txt | python ~/Utils/convert.txt.to.csv.py --output="Important.file.csv"
+
 
 ```
