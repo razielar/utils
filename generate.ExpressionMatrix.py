@@ -1,12 +1,14 @@
-
+### Written in Python.3.5:
 import os
 import sys
 import re
 import pandas as pd
 import numpy as np
-from random import randrange #generate a random integer 
+from random import randrange #generate a random integer
 
-pipeline_db= 'pipeline.db'
+##### ---- The script starts ----
+
+pipeline_db=sys.argv[1]
 
 file_path=[]
 with open(pipeline_db, 'r') as pipeline_db:
