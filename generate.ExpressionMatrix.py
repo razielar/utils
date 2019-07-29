@@ -39,3 +39,4 @@ output_name=sys.argv[2]
 
 final_df.to_csv(output_name, sep='\t', index=False, header=True)
 
+#Jupyter Notebook: /nfs/no_backup_isis/rg/ramador/D_me/RNA-seq/grape-nf-ERC/Python_scripts/generate.expression.df.ipynb
