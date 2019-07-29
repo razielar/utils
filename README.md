@@ -9,6 +9,7 @@
 5. [Flybase Orthology relationship](#ortho)
 6. [Synteny analysis](#synteny)
 7. [Convert a txt file into a csv](#csv)
+8. [Merge all Gene-Expression values from the grape-nf pipeline](#ge)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -160,5 +161,20 @@ cat file.txt | python ~/Utils/convert.txt.to.csv.py
 
 cat file.txt | python ~/Utils/convert.txt.to.csv.py --output="Important.file.csv"
 
+
+```
+## 8) <a id='ge'></a> Merge all Gene-Expression values from the grape-nf pipeline
+
+*generate.ExpressionMatrix.py*
+*Written in Python.3.5*
+
+**Description:**
+
+When you run the [grape-nf](https://github.com/guigolab/grape-nf) pipeline you obtain a file called: **pipeline.db** which it contains the description of results and their *absolute file path* . In order to merge all the results of quantification (RSEM: gene-expression) in **one dataframe** use the script: *generate.ExpressionMatrix.py* as is shown below:
+
+```{r}
+
+python ~/Utils/generate.ExpressionMatrix.py pipeline.db\
+output_name.tsv
 
 ```
