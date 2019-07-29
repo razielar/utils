@@ -35,3 +35,7 @@ for i in file_path:
     final_df=pd.merge(final_df, df_tmp, on='gene_id')
     print('{0}: {1}'.format(counter, exp_id))
 
+output_name=sys.argv[2]
+
+final_df.to_csv(output_name, sep='\t', index=False, header=True)
+
