@@ -8,6 +8,8 @@ from random import randrange #generate a random integer
 
 ##### ---- The script starts ----
 
+print(len(sys.argv))
+
 if len(sys.argv) < 2:
     sys.exit("usage: python  generate.ExpressionMatrix.py  pipeline.db output.tsv")
 
