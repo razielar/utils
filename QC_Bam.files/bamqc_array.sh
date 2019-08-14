@@ -1,13 +1,17 @@
 #!/bin/bash
-#$ -N bamqc8642
-#$ -t 1-35
+
+#$ -N bamQC
+#$ -t 1-84 
 #$ -tc 2
-#$ -M iman.sadeghi@crg.es
+#$ -M raziel.amador@crg.es
 #$ -m abe
-#$ -q rg-el7 
-#$ -pe smp 2
-#$ -o /dev/null
-#$ -e /dev/null
+#$ -q rg-el7
+#$ -l virtual_free=16G,h_rt=24:00:00
+#$ -cwd
+#$ -pe smp 4
+#$ -o cluster_out/
+#$ -e cluster_out/
+
 #define the directory as Task ID
 Input=${SGE_TASK_ID}
 #get each line of the input file as path
