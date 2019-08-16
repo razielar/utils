@@ -209,7 +209,7 @@ qsub bamqc_array.sh
 ```
 ### [Picard](https://broadinstitute.github.io/picard/)
 
-*Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics**
+*Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics** <br/>
 *Picard_array.sh*: job array
 
 Modify **-t** according of the number of bam files that you want to analyze. You can modify **reference genome**. If you just run: *bamqc_array.sh* disable the option to create the sample folders.
