@@ -1,36 +1,40 @@
 #!/bin/bash
-#$ -N pic30
-#$ -t 1-36
-#$ -tc 2
-#$ -M iman.sadeghi@crg.es
-#$ -m abe
-#$ -q rg-el7 
-#$ -pe smp 2
-#$ -o /dev/null
-#$ -e /dev/null
-#define the directory as Task ID
-Input=${SGE_TASK_ID}
-#get each line of the input file as path
-path=$(/bin/sed -n ${Input}p /users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/dir.tsv |/bin/awk {'print $3'})
-file=$(/bin/sed -n ${Input}p /users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/dir.tsv |/bin/awk {'print $2'})
-sample=$(/bin/sed -n ${Input}p /users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/dir.tsv |/bin/awk {'print $1'})
 
-#---make directories for each sample
-mkdir /users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/$sample
-cd ~/tmp
+#$ -N Picard
+#$ -t 1-84 
+#$ -tc 2
+#$ -q rg-el7
+#$ -l virtual_free=16G,h_rt=24:00:00
+#$ -cwd
+#$ -pe smp 4
+#$ -o cluster_out/
+#$ -e cluster_out/
+
+#Job array:
+Input=${SGE_TASK_ID}
+
+#Get each line of the input file as path
+path=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $2'})
+file=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $3'})
+sample=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $1'})
+dme_genome=/users/rg/projects/references/Genome/D.melanogaster/dm6/dm6.fa
+
+#---make directories for each sample: Not run this because it's was already created by bamqc_array.sh
+# mkdir  -p  QC/$sample
+# cd ~/tmp
+
 #---picard summury metrics
 module load picard/2.6.0-Java-1.8.0_162
 java -jar $EBROOTPICARD/picard.jar CollectAlignmentSummaryMetrics \
       I=$file \
-      O=/users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/${sample}/${sample}_metrics.txt \
-      R=/nfs/users2/rg/projects/references/Genome/H.sapiens/GRCh38/GRCh38.primary_assembly.genome.fa
-#---Run picard GCBias_metrics
+      O=QC/${sample}/${sample}_metrics.txt \
+      R=$dme_genome
+
+#---picard GCBias_metrics
 module load picard/2.6.0-Java-1.8.0_162
 java -jar $EBROOTPICARD/picard.jar CollectGcBiasMetrics \
         I=$file \
-        O=/users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/${sample}/${sample}_GC_metrics.txt \
-        CHART=/users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/${sample}/${sample}_GC_metrics.pdf \
-        R=/nfs/users2/rg/projects/references/Genome/H.sapiens/GRCh38/GRCh38.primary_assembly.genome.fa \
-        S=/users/rg/isadeghi/RNAseq_path/PRJNA235930/QC/${sample}/${sample}_GC_summary.txt
-
-
+        O=QC/${sample}/${sample}_GC_metrics.txt \
+        CHART=QC/${sample}/${sample}_GC_metrics.pdf \
+        R=$dme_genome \
+        S=QC/${sample}/${sample}_GC_summary.txt
