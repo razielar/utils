@@ -185,7 +185,7 @@ This folder contains 4 scripts to obtain QC of aligned **bam** files.
 
 ### 9.1) Input file
 
-If you just run **grape-nf** run *bamqc_input.py* in the following way:
+If you just run [grape-nf](https://github.com/guigolab/grape-nf) run: *bamqc_input.py* in the following way:
 
 ```{r}
 
@@ -197,7 +197,7 @@ input_bamQC.tsv
 
 ### [Qualimap:](http://qualimap.bioinfo.cipf.es/)
 
-*bamqc_array.sh*: job array 
+*bamqc_array.sh*: job array
 
 Modify **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to /dev/null if you don't want to obtain logs.
 You can also modify the **gtf file**
@@ -205,5 +205,17 @@ You can also modify the **gtf file**
 ```{r}
 
 qsub bamqc_array.sh
+
+```
+### [Picard](https://broadinstitute.github.io/picard/)
+
+*Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics**
+*Picard_array.sh*: job array
+
+Modify **-t** according of the number of bam files that you want to analyze. You can modify **reference genome**. If you just run: *bamqc_array.sh* disable the option to create the sample folders.
+
+```{r}
+
+qsub Picard_array.sh
 
 ```
