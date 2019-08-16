@@ -1,11 +1,9 @@
-import os
-import sys 
-import re
+import os, sys, re 
 
 if len(sys.argv) < 3:
     sys.exit("usage: python bamqc_input.py pipeline.db output.tsv")
 
-pipeline_db= 'pipeline.db'
+pipeline_db= sys.argv[1]
 
 sample_name=[]
 path=[]
@@ -23,8 +21,9 @@ with open(pipeline_db, 'r') as pipeline_db:
             tmp_path='/'.join(tmp_path)
             path.append(tmp_path)
 
-#Print output
+#Print output:
+output_name= sys.argv[2]
 
-with open('output.txt', 'w') as output:
+with open(output_name, 'w') as output:
     for (s, p, a) in zip(sample_name, path, ab_file):
         output.write("{0}\t{1}\t{2}\n".format(s,p,a))
