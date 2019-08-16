@@ -2,6 +2,9 @@ import os
 import sys 
 import re
 
+if len(sys.argv) < 3:
+    sys.exit("usage: python bamqc_input.py pipeline.db output.tsv")
+
 pipeline_db= 'pipeline.db'
 
 sample_name=[]
@@ -11,7 +14,7 @@ ab_file=[]
 with open(pipeline_db, 'r') as pipeline_db:
     for i in pipeline_db:
         i= i.rstrip().split('\t')
-        if re.search(r'GenomeAlignments', i[4]):
+        if re.search(r'GenomeAlignments', i[4]): #Select bam aligned to genome
             tmp_sample= i[0]
             sample_name.append(tmp_sample)
             tmp_file= i[2]
