@@ -10,6 +10,7 @@
 6. [Synteny analysis](#synteny)
 7. [Convert a txt file into a csv](#csv)
 8. [Merge all Gene-Expression values from the grape-nf pipeline](#ge)
+9. [QC_Bam.files](#qc)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -176,5 +177,19 @@ When you run the [grape-nf](https://github.com/guigolab/grape-nf) pipeline you o
 
 python ~/Utils/generate.ExpressionMatrix.py pipeline.db\
 output_name.tsv
+
+```
+## 9) <a id='qc'></a> QC_Bam.files
+
+This folder contains 4 scripts to obtain QC of aligned **bam** files.
+
+### 9.1) Input file
+
+If you just run **grape-nf** run *bamqc_input.py* in the following way:
+
+```{r}
+
+python ~/Utils/bamqc_input.py pipeline.db\
+input_bamQC.tsv
 
 ```
