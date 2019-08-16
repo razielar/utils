@@ -3,8 +3,6 @@
 #$ -N bamQC
 #$ -t 1-84 
 #$ -tc 2
-#$ -M raziel.amador@crg.es
-#$ -m abe
 #$ -q rg-el7
 #$ -l virtual_free=16G,h_rt=24:00:00
 #$ -cwd
@@ -12,25 +10,24 @@
 #$ -o cluster_out/
 #$ -e cluster_out/
 
-#define the directory as Task ID
+#job array:
 Input=${SGE_TASK_ID}
-#get each line of the input file as path
-file=$(/bin/sed -n ${Input}p /users/rg/isadeghi/RNAseq_path/PRJNA318642/QC/dir.tsv |/bin/awk {'print $2'})
-newname=$(/bin/sed -n ${Input}p /users/rg/isadeghi/RNAseq_path/PRJNA318642/QC/dir.tsv |/bin/awk {'print $1'})
-mkdir /users/rg/isadeghi/RNAseq_path/PRJNA318642/QC/$newname
+
+file=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $3'}) #bam_file
+newname=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $1'}) #sample_name
+mkdir -p  QC/$newname
+gtf=/nfs/users2/rg/projects/references/Annotation/D.melanogaster/dmel_r6.22/mRNA_ncRNA/ucsc.dmel-all-r6.22.mRNA.nRNA.190.length.selection.type.no.Overlapping.Sorted.gtf
+
 #--- move to local drive for a better performance
-cd ~/tmp
+# cd ~/tmp #DON'T UNDERSTAND 
 
 #---Load qualimap module ---#
 module load qualimap
-#---Run qualimap bamqc ---#
+
+#---Run qualimap bamqc ---# 
 qualimap bamqc --java-mem-size=4G \
-	-bam $file \
-	-gd HUMAN \
-	-gff /users/rg/projects/references/Annotation/H.sapiens/gencode28/gencode.v28.primary_assembly.annotation.gtf \
-	-outdir /users/rg/isadeghi/RNAseq_path/PRJNA318642/QC/$newname \
-	-outfile ${newname}_bamqc.pdf \
-	-outformat PDF \
-	-p strand-specific-reverse
-
-
+        -bam $file \
+        -gff $gtf \
+        -outdir QC/$newname \
+        -outfile ${newname}_bamqc.pdf \
+        -outformat PDF
