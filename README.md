@@ -193,3 +193,17 @@ python ~/Utils/bamqc_input.py pipeline.db\
 input_bamQC.tsv
 
 ```
+### 9.2) QC
+
+### [Qualimap:](http://qualimap.bioinfo.cipf.es/)
+
+*bamqc_array.sh*: job array 
+
+Modify **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to /dev/null if you don't want to obtain logs.
+You can also modify the **gtf file**
+
+```{r}
+
+qsub bamqc_array.sh
+
+```
