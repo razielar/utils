@@ -199,7 +199,7 @@ input_bamQC.tsv
 
 *bamqc_array.sh*: job array
 
-Modify **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to /dev/null if you don't want to obtain logs.
+Modify: **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to */dev/null* if you don't want to obtain logs.
 You can also modify the **gtf file**
 
 ```{r}
@@ -212,10 +212,15 @@ qsub bamqc_array.sh
 *Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics** <br/>
 *Picard_array.sh*: job array
 
-Modify **-t** according of the number of bam files that you want to analyze. You can modify **reference genome**. If you just run: *bamqc_array.sh* disable the option to create the sample folders.
+Modify: **-t** according of the number of bam files that you want to analyze. You can modify **reference genome**. If you just run: *bamqc_array.sh* disable the option to create the sample folders.
 
 ```{r}
 
 qsub Picard_array.sh
 
 ```
+### 9.3) Merge all the QC results
+
+*merge.QC_files.sh*
+
+Copy the **header** file. Modify:  **path**. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
