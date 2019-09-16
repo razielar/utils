@@ -1,7 +1,7 @@
 import sys, os
 
 if len(sys.argv) < 4:
-    sys.exit("usage: python ObtainWindow_TSS.bed.py bed_file.bed window output.tsv")
+    sys.exit("usage: python ObtainWindow_TSS.bed.py bed_file.bed window output.bed")
 
 ### --- Parameters ---
 bed_file= sys.argv[1]
