@@ -11,6 +11,7 @@
 7. [Convert a txt file into a csv](#csv)
 8. [Merge all Gene-Expression values from the grape-nf pipeline](#ge)
 9. [QC_Bam.files](#qc)
+10. [Obtain a window around the TSS of some genes](#tss)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -224,3 +225,25 @@ qsub Picard_array.sh
 *merge.QC_files.sh*
 
 Copy the **header** file. Modify:  **path**. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
+
+## 10) <a id='tss'></a> Obtain a window around the TSS
+
+*ObtainWindow_TSS.bed.py*
+*Written in Python.3.5*
+
+**Description:**
+
+It receives as an **1)** input a bed file, **2)** a window interger number, and **3)** the outputname bed file. In the example below it uses a 50 bp window around the TSS of all genes within bed file to obtain the promoters bed file. 
+
+```{r}
+
+python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed\
+50
+output_name.bed
+
+```
+
+
+
+
+
