@@ -9,9 +9,7 @@ window= sys.argv[2]
 output_name= sys.argv[3]
 ### --- Parameters ---
 
-# bed_file= "lncRNA_DGE_0h/lncRNA.up.0h.bed"
-# window= 50
-# output_name= "promoters.txt"
+### Starts:
 
 final_bed=[]
 with open(bed_file, 'r') as bed_file:
@@ -24,10 +22,8 @@ with open(bed_file, 'r') as bed_file:
         i[2]=var_2
         final_bed.append(i)
 
-
-
+### Write the output:
 
 with open(output_name, 'w') as output:
     for i in final_bed:
         output.write("{0}\t{1}\t{2}\t{3}\n".format(i[0], i[1], i[2], i[3]))
-
