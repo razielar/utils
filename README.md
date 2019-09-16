@@ -228,18 +228,16 @@ Copy the **header** file. Modify:  **path**. The suffix of the input files are: 
 
 ## 10) <a id='tss'></a> Obtain a window around the TSS
 
-*ObtainWindow_TSS.bed.py*
+*ObtainWindow_TSS.bed.py* <br/>
 *Written in Python.3.5*
 
 **Description:**
 
-It receives as an **1)** input a bed file, **2)** a window interger number, and **3)** the outputname bed file. In the example below it uses a 50 bp window around the TSS of all genes within bed file to obtain the promoters bed file. 
+It receives as an input **1)** a bed file, **2)** a window interger number, and **3)** the outputname bed file. In the example below it uses a 50 bp window around the TSS of all genes within bed file to obtain the promoters bed file. 
 
 ```{r}
 
-python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed\
-50
-output_name.bed
+python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed 50 output_name.bed
 
 ```
 
