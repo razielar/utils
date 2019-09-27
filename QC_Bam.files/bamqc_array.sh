@@ -13,6 +13,9 @@
 #job array:
 Input=${SGE_TASK_ID}
 
+#cluster_out:
+mkdir cluster_out
+
 file=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $3'}) #bam_file
 newname=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $1'}) #sample_name
 mkdir -p  QC/$newname
