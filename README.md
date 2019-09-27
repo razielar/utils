@@ -225,7 +225,9 @@ qsub Picard_array.sh
 
 *merge.QC_files.sh*
 
-Copy the **header** file. Modify:  **path**. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
+Copy the **header** file. <br/>
+Modify:  **path**. <br/>
+The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
 
 ## 10) <a id='tss'></a> Obtain a window around the TSS
 
