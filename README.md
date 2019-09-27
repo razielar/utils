@@ -229,6 +229,8 @@ Copy the **header** file. <br/>
 Modify:  **path**. <br/>
 The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
 
+The final output filename is: **QC_Data.csv**
+
 ## 10) <a id='tss'></a> Obtain a window around the TSS
 
 *ObtainWindow_TSS.bed.py* <br/>
