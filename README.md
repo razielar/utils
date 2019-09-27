@@ -182,7 +182,8 @@ output_name.tsv
 ```
 ## 9) <a id='qc'></a> QC_Bam.files
 
-This folder contains 4 scripts to obtain QC of aligned **bam** files.
+This folder contains 4 scripts to obtain QC of aligned **bam** files. <br>
+The whole pipeline relies that input file has to be called: **input_bamQC.tsv** if not it chrashes.
 
 ### 9.1) Input file
 
@@ -233,15 +234,10 @@ Copy the **header** file. Modify:  **path**. The suffix of the input files are: 
 
 **Description:**
 
-It receives as an input **1)** a bed file, **2)** a window interger number, and **3)** the outputname bed file. In the example below it uses a 50 bp window around the TSS of all genes within bed file to obtain the promoters bed file. 
+It receives as an input **1)** a bed file, **2)** a window interger number, and **3)** the outputname bed file. In the example below it uses a 50 bp window around the TSS of all genes within bed file to obtain the promoters bed file.
 
 ```{r}
 
 python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed 50 output_name.bed
 
 ```
-
-
-
-
-
