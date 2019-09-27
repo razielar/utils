@@ -12,15 +12,10 @@ tail -3 ${i%/}_metrics.txt | cut -f3-8,18-21 | column -t >${i%/}_metrics.tsv #_m
 
 
 ###---- 2) Qualimap:
-sed -n 20,57p ${i%/}_bamqc.txt | grep -E 'reads|bases|rate|GC' \ 
-	| grep '=' | awk -F "= " '{print $2}' \ 
-	| sed 's/[a-z]//g' | sed 's/%//g' | sed 's/(.*)//g' \ 
-	| tr -d '[:blank:]'| tr '\n' '\t' | sed 's/,//g' \
-	| cut -f1,2,7,8,11,12 | column -t>${i%/}_bamqc.tsv #_bamqc.txt
+sed -n 20,57p ${i%/}_bamqc.txt | grep -E 'reads|bases|rate|GC' | grep '=' | awk -F "= " '{print $2}' | sed 's/[a-z]//g' | sed 's/%//g' | sed 's/(.*)//g' | tr -d '[:blank:]'| tr '\n' '\t' | sed 's/,//g' | cut -f1,2,7,8,11,12 | column -t>${i%/}_bamqc.tsv #_bamqc.txt
 
 ###---- 3) Picard CollectGcBiasMetrics: 
- tail -3 ${i%/}_GC_summary.txt \ 
-	| awk '{for(i=4;i<=6;++i)printf  $i""FS ; print "\t"}'| column -t >${i%/}_GC_summary.tsv #_GC_summary.txt
+ tail -3 ${i%/}_GC_summary.txt | awk '{for(i=4;i<=6;++i)printf  $i""FS ; print "\t"}'| column -t >${i%/}_GC_summary.tsv #_GC_summary.txt
 
 #--- Merge the output from the previous 3 commands: 
 paste *bamqc.tsv *GC_summary.tsv *metrics.tsv | column -t >${i%/}.qcData
