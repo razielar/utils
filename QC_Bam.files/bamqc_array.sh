@@ -31,3 +31,6 @@ qualimap bamqc --java-mem-size=4G \
         -outdir QC/$newname \
         -outfile ${newname}_bamqc.pdf \
         -outformat PDF
+
+mv QC/$newname/genome_results.txt QC/$newname/${newname}_bamqc.txt
+
