@@ -236,7 +236,7 @@ There are two things you can do about this warning:
 ;; (require 'ein)
 
 ;; ;; ========== Docker ===========
-;; (require 'dockerfile-mode)
+(require 'dockerfile-mode)
 
 ;; ========== Window management =========
 ;; Move within windows using the META key
