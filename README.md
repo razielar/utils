@@ -12,6 +12,7 @@
 8. [Merge all Gene-Expression values from the grape-nf pipeline](#ge)
 9. [QC_Bam.files](#qc)
 10. [Obtain a window around the TSS of some genes](#tss)
+11. [GTF analysis](#gtf)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -245,3 +246,32 @@ It receives as an input **1)** a bed file, **2)** a window interger number, and 
 python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed 50 output_name.bed
 
 ```
+
+## 11) <a id='gtf'></a> GTF analysis:
+
+*GTF.analysis.GeneIDName.py*
+
+**Description:**
+
+This script has two options either **gene** or **transcript**. For **gene** from a gtf file you obtain: gene id, gene name, gene type and gene length. For **transcript** you obtain gene id, gene name, transcript id, transcript name, transcript type (it is the same as gene type) and transcript length.
+
+**Gene Usage:**
+
+```{r}
+
+/Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=gene.example.tsv
+
+```
+**Transcript Usage:**
+
+```{r}
+
+Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=transcript.example.tsv --type=transcript
+
+```
+
+
+
+
+
+
