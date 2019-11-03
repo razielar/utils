@@ -29,7 +29,7 @@ There are two things you can do about this warning:
  '(package-check-signature (quote allow-unsigned))
  '(package-selected-packages
    (quote
-    (flycheck conda elpy helm-projectile helm-company swiper ess-R-data-view helm avy expand-region rainbow-delimiters general use-package monokai-theme ess-view gnu-elpa-keyring-update ess))))
+    (markdown-mode dockerfile-mode flycheck conda elpy helm-projectile helm-company swiper ess-R-data-view helm avy expand-region rainbow-delimiters general use-package monokai-theme ess-view gnu-elpa-keyring-update ess))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -130,6 +130,21 @@ There are two things you can do about this warning:
   (interactive)
   (ess-execute (concat (dotted-symbol-at-point) "[1:5, 1:5]\n") t))
 
+(defun ess-dim ()
+  "dim(X)"
+  (interactive)
+  (ess-execute (concat "dim(" (dotted-symbol-at-point) ")\n") t))
+
+(defun ess-rownames ()
+  "rownames(X)"
+  (interactive)
+  (ess-execute (concat "rownames(" (dotted-symbol-at-point) ")\n") t))
+
+(defun ess-colnames ()
+  "colnames(X)"
+  (interactive)
+  (ess-execute (concat "colnames(" (dotted-symbol-at-point) ")\n") t))
+
 ;; Smart assignment cycling with C-;
 ;; Pipe with C-ñ
 (use-package ess-mode
@@ -139,13 +154,20 @@ There are two things you can do about this warning:
 	("C-ñ" . 'pipe_R_operator)
 	("C-c h" . 'ess-head)
 	("C-c t" . 'ess-tail)
-	("C-c u" . 'ess-upper-square))
+	("C-c u" . 'ess-upper-square)
+	("C-c d" . 'ess-dim)
+	("C-c r" . 'ess-rownames)
+	("C-c c" . 'ess-colnames)
+	)
   (:map inferior-ess-mode-map
 	("C-;" . ess-cycle-assign)
 	("C-ñ" . 'pipe_R_operator)
 	("C-c h" . 'ess-head)
 	("C-c t" . 'ess-tail)
-	("C-c u" . 'ess-upper-square)))
+	("C-c u" . 'ess-upper-square)
+	("C-c d" . 'ess-dim)
+	("C-c r" . 'ess-rownames)
+	("C-c c" . 'ess-colnames)))
 
 ;; Disable flymake
 (setq ess-use-flymake nil)
@@ -237,6 +259,9 @@ There are two things you can do about this warning:
 
 ;; ;; ========== Docker ===========
 (require 'dockerfile-mode)
+
+;; ;; ========== Markdown ===========
+(require 'markdown-mode)
 
 ;; ========== Window management =========
 ;; Move within windows using the META key
