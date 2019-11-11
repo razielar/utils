@@ -145,11 +145,17 @@ There are two things you can do about this warning:
   (interactive)
   (ess-execute (concat "colnames(" (dotted-symbol-at-point) ")\n") t))
 
-
 (defun ess-view ()
   "View(X)"
   (interactive)
   (ess-execute (concat "View(" (dotted-symbol-at-point) ")\n") t))
+
+(defun ess-in ()
+  "R %in% operator"
+  (interactive)
+  (just-one-space 1)
+  (insert "%in%")
+  (just-one-space 1))
 
 ;; Smart assignment cycling with C-;
 ;; Pipe with C-ñ
@@ -165,6 +171,7 @@ There are two things you can do about this warning:
 	("C-c r" . 'ess-rownames)
 	("C-c c" . 'ess-colnames)
 	("C-c v" . 'ess-view)
+	("C-c i" . 'ess-in)
 	)
   (:map inferior-ess-mode-map
 	("C-;" . ess-cycle-assign)
@@ -175,7 +182,8 @@ There are two things you can do about this warning:
 	("C-c d" . 'ess-dim)
 	("C-c r" . 'ess-rownames)
 	("C-c c" . 'ess-colnames)
-	("C-c v" . 'ess-view)))
+	("C-c v" . 'ess-view)
+	("C-c i" . 'ess-in)))
 
 ;; Disable flymake
 (setq ess-use-flymake nil)
