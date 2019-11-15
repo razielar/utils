@@ -173,14 +173,32 @@ cat file.txt | python ~/Utils/convert.txt.to.csv.py --output="Important.file.csv
 
 **Description:**
 
-When you run the [grape-nf](https://github.com/guigolab/grape-nf) pipeline you obtain a file called: **pipeline.db** which it contains the description of results and their *absolute file path* . In order to merge all the results of quantification (RSEM: gene-expression) in **one dataframe** use the script: *generate.ExpressionMatrix.py* as is shown below:
+When you run the [grape-nf](https://github.com/guigolab/grape-nf) pipeline you obtain a file called: **pipeline.db** which it contains the description of results and their *absolute file path* . In order to merge all the results of quantification (RSEM: gene/transcript-expression) in **one dataframe** use the script: *generate.ExpressionMatrix.py* as is shown below:
+
+### 8.1) To obtain expression values in TPMs:
 
 ```{r}
 
-python ~/Utils/generate.ExpressionMatrix.py pipeline.db\
-output_name.tsv
+~/Utils/generate.ExpressionMatrix.py --input=pipeline.db
 
 ```
+### 8.2) To obtain expression values in FPKMs:
+
+```{r}
+
+~/Utils/generate.ExpressionMatrix.py --input=pipeline.db --type=FPKM
+
+```
+
+### 8.3) To obtain expression values in Counts:
+
+```{r}
+
+~/Utils/generate.ExpressionMatrix.py --input=pipeline.db --type=Count
+
+```
+
+
 ## 9) <a id='qc'></a> QC_Bam.files
 
 This folder contains 4 scripts to obtain QC of aligned **bam** files. <br>
