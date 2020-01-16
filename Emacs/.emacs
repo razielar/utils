@@ -25,11 +25,10 @@ There are two things you can do about this warning:
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" default)))
- '(package-check-signature (quote allow-unsigned))
+    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "687b04be9e8a198ac9b87c520abf0dbd1f4071b8bbbfe8f1561af3ef82884bb0" default)))
  '(package-selected-packages
    (quote
-    (markdown-mode dockerfile-mode flycheck conda elpy helm-projectile helm-company swiper ess-R-data-view helm avy expand-region rainbow-delimiters general use-package monokai-theme ess-view gnu-elpa-keyring-update ess))))
+    (poly-R poly-markdown polymode ac-haskell-process helm-projectile swiper helm company ess avy expand-region rainbow-delimiters parent-mode general monokai-theme))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -76,9 +75,6 @@ There are two things you can do about this warning:
 ;; Jump to line using two characters
 (global-set-key (kbd "C-c SPC") 'avy-goto-char-timer)
 
-;; Rebind right windows key to find files
-;; (global-set-key (kbd "<menu>") 'helm-find-files)
-
 ; Disable pinging
 (setq ffap-machine-p-known 'reject)
 
@@ -86,6 +82,14 @@ There are two things you can do about this warning:
 (setq latex-run-command "pdflatex")
 
 ;; ========== ESS =========
+;; Set default R version, (i.e. the one launched by typing M-x R <RET>)
+(setq inferior-R-program-name "/usr/local/bin/R")
+
+;; Use RMarkdown with polymode and poly-markdown
+(require 'polymode)
+(require 'poly-markdown)
+(require 'poly-R)
+
 ;; Make ess-describe buffer always display on the right side
 (setq display-buffer-alist
       `(("*ess-describe*"
@@ -214,71 +218,6 @@ There are two things you can do about this warning:
   (define-key company-active-map (kbd "M-TAB") 'company-complete-common)
   (define-key company-active-map (kbd "M-TAB") 'company-complete-selection))
 
-;; ;; ========== Python ====================
-;; Installed: conda, elpy, flycheck,
-
-(use-package conda
-  :ensure t
-  :init
-  (setq conda-anaconda-home (expand-file-name "~/.conda/"))
-  :config
-  ;; If you want interactive shell support, include:
-  (conda-env-initialize-interactive-shells)
-  ;; If you want eshell support, include:
-  (conda-env-initialize-eshell)
-  ;; If you want auto-activation, include:
-  (conda-env-autoactivate-mode t)
-  ;; Activate the project/virtual env you want to use.
-  ;; Via M-x conda-env-activate RET analyticd-pysystemtrade
-  ;; or
-  ;; (conda-env-activate "analyticd-pysystemtrade")
-  )
-
-(elpy-enable)
-;; (defun py34c ()
-;;   (interactive)
-;;   (pyvenv-activate "~/.conda/envs/py34c/")
-;;   )
-
-;; ;; (add-hook 'python-mode-hook 'anaconda-mode)
-;; ;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-
-(setq python-shell-interpreter "jupyter"
-      python-shell-interpreter-args "console --simple-prompt"
-      python-shell-prompt-detect-failure-warning nil)
-(add-to-list 'python-shell-completion-native-disabled-interpreters
-             "jupyter")
-
-;; use flycheck not flymake with elpy
-;; (when (require 'flycheck nil t)
-;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-;; enable autopep8 formatting on save
-(require 'py-autopep8)
-(add-hook 'elpy-mode-hook 'py-autopep8-enable-on-save)
-
-;; Redefine Elpy's default bindings for movement and evaluation
-(define-key elpy-mode-map (kbd "<M-down>") nil)
-(define-key elpy-mode-map (kbd "<M-up>") nil) 
-(define-key elpy-mode-map (kbd "<M-right>") nil)
-(define-key elpy-mode-map (kbd "<M-left>") nil)
-(define-key elpy-mode-map (kbd "C-c s") 'elpy-nav-move-line-or-region-down)
-(define-key elpy-mode-map (kbd "C-c w") 'elpy-nav-move-line-or-region-up) 
-(define-key elpy-mode-map (kbd "C-c d") 'elpy-nav-indent-shift-right)
-(define-key elpy-mode-map (kbd "C-c a") 'elpy-nav-indent-shift-left)
-(define-key elpy-mode-map (kbd "<C-up>") nil)
-(define-key elpy-mode-map (kbd "<C-down>") nil)
-
-;; ;; ========== EIN ==========
-;; (require 'ein)
-
-;; ;; ========== Docker ===========
-(require 'dockerfile-mode)
-
-;; ;; ========== Markdown ===========
-(require 'markdown-mode)
-
 ;; ========== Window management =========
 ;; Move within windows using the META key
 (windmove-default-keybindings 'meta)
@@ -346,3 +285,10 @@ There are two things you can do about this warning:
 (require 'helm-projectile)
 (setq projectile-completion-system 'helm)
 (helm-projectile-on)
+
+
+
+
+
+
+
