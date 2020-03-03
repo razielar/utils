@@ -29,7 +29,7 @@ There are two things you can do about this warning:
  '(package-check-signature (quote allow-unsigned))
  '(package-selected-packages
    (quote
-    (py-autopep8 projectile company poly-R polymode markdown-mode dockerfile-mode flycheck conda elpy helm-projectile helm-company swiper ess-R-data-view helm avy expand-region rainbow-delimiters general use-package monokai-theme ess-view gnu-elpa-keyring-update ess))))
+    (paradox py-autopep8 projectile company poly-R polymode markdown-mode dockerfile-mode flycheck conda elpy helm-projectile helm-company swiper ess-R-data-view helm avy expand-region rainbow-delimiters general use-package monokai-theme ess-view gnu-elpa-keyring-update ess))))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -317,7 +317,7 @@ There are two things you can do about this warning:
 (use-package conda
   :ensure t
   :init
-  (setq conda-anaconda-home (expand-file-name "/home/razielar/bin/miniconda3"))
+  (setq conda-anaconda-home (expand-file-name "~/bin/miniconda3"))
   :config
   ;; If you want interactive shell support, include:
   (conda-env-initialize-interactive-shells)
@@ -331,20 +331,38 @@ There are two things you can do about this warning:
   ;; (conda-env-activate "analyticd-pysystemtrade")
   )
 
+;; Set a default Conda environment: Python.3.6 
 (elpy-enable)
-;; ;; (defun py34c ()
-;; ;;   (interactive)
-;; ;;   (pyvenv-activate "~/.conda/envs/py34c/")
-;; ;;   )
+(defun Python.3.6 ()
+  (interactive)
+  (conda-env-activate "~/bin/miniconda3/envs/Python.3.6/")
+  )
+
+;; (elpy-enable)
+;; (defun py34c ()
+;;   (interactive)
+;;   (pyvenv-activate "~/.conda/envs/py34c/")
+;;   )
 
 ;; ;; (add-hook 'python-mode-hook 'anaconda-mode)
 ;; ;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
-(setq python-shell-interpreter "jupyter"
-      python-shell-interpreter-args "console --simple-prompt"
-      python-shell-prompt-detect-failure-warning nil)
-(add-to-list 'python-shell-completion-native-disabled-interpreters
-             "jupyter")
+;; Use Jupyter:
+;; (setq python-shell-interpreter "jupyter"
+;;       python-shell-interpreter-args "console --simple-prompt"
+;;       python-shell-prompt-detect-failure-warning nil)
+;; (add-to-list 'python-shell-completion-native-disabled-interpreters
+;;              "jupyter")
+
+;; Use IPython
+(setq python-shell-interpreter "ipython"
+      python-shell-interpreter-args "-i --simple-prompt")
+
+
+;; use flycheck not flymake with elpy: I don't understand this
+;; (when (require 'flycheck nil t)
+;;   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+;;   (add-hook 'elpy-mode-hook 'flycheck-mode))
 
 ;; enable autopep8 formatting on save
 (require 'py-autopep8)
@@ -362,7 +380,8 @@ There are two things you can do about this warning:
 (define-key elpy-mode-map (kbd "<C-up>") nil)
 (define-key elpy-mode-map (kbd "<C-down>") nil)
 
-
-
+;; Use paradox for better looking Package Menu
+(require 'paradox)
+(paradox-enable)
 
 
