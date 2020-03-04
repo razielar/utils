@@ -25,7 +25,7 @@ with open(pipeline_db, 'r') as pipeline_db:
                 if re.search(r'MultipleRawSignal', non_strand[4]): #Multiple 
                     non_strand_multiple=non_strand[2]
                     dict_non_strand['multiple'].append(non_strand_multiple)
-                elif re.search(r'^RawSignal', non_strand[4]):
+                elif re.search(r'^RawSignal', non_strand[4]): #Unique
                     non_strand_unique=non_strand[2]
                     dict_non_strand['unique'].append(non_strand_unique)
             if re.search(r'MATE2_SENSE', bigwig[6]): #strand-specific
@@ -33,15 +33,9 @@ with open(pipeline_db, 'r') as pipeline_db:
                 if re.search(r'Multiple', strand[4]): #Multiple 
                     strand_multiple=strand[2]
                     dict_strand['multiple'].append(strand_multiple)
-                elif re.search(r'^Plus', strand[4]):
-                    print(strand[2])
-                    
-
-
-
-
-
-
+                elif re.search(r'^Plus|Minus', strand[4]): #Unique
+                    strand_unique=strand[2]
+                    dict_strand['unique'].append(strand_unique)
 
 #Set the destination: 
 path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29"
