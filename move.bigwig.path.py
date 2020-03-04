@@ -23,17 +23,18 @@ with open(pipeline_db, 'r') as pipeline_db:
             if re.search(r'NONE', bigwig[6]):
                 non_strand=bigwig
                 if re.search(r'MultipleRawSignal', non_strand[4]): #Multiple 
-                    tmp_non_strand=non_strand[2]
-                    dict_non_strand['multiple'].append(tmp_non_strand)
-            # if re.search(r'NONE', bigwig[6]): #strand-specific
+                    non_strand_multiple=non_strand[2]
+                    dict_non_strand['multiple'].append(non_strand_multiple)
+                elif re.search(r'^RawSignal', non_strand[4]):
+                    non_strand_unique=non_strand[2]
+                    dict_non_strand['unique'].append(non_strand_unique)
+                    # if re.search(r'NONE', bigwig[6]): #strand-specific
             #     non_strand=bigwig
             #     if re.search(r'^RawSignal', non_strand[4]): #Multiple 
             #         tmp_non_strand_unique=non_strand[2]
             #         dict_non_strand['unique'].append(tmp_non_strand_unique)
 
 
-len(dict_non_strand['multiple'])
-len(dict_non_strand['unique'])
 
 
 
