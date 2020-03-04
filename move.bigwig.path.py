@@ -38,18 +38,24 @@ with open(pipeline_db, 'r') as pipeline_db:
                     dict_strand['unique'].append(strand_unique)
 
 #Set the destination: 
-path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29"
+path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique"
 
-if not os.path.exists(path_destination):
-    print("Doesn't exist")
+# --- 1) Unique: combine strand and non-strand specific bigwigs
+final_unique=dict_non_strand['unique']+dict_strand['unique']
 
-
-#Combine strand and non-strand specific bigwigs 
-final_ouput=non_strand_bw+strand_bw
-
-for i in final_ouput:
-    cmd="cp "+i+path_destination
-    print(cmd)
+for i,j in enumerate(final_unique):
+    cmd="cp "+j+path_destination
+    print("{0}: {1}".format(i,cmd))
     os.system(cmd)
+
+# --- 2) Multiple: combine strand and non-strand specific bigwigs
+path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/multiple"
+final_multiple=dict_non_strand['multiple']+dict_strand['multiple']
+
+for i,j in enumerate(final_multiple):
+    cmd="cp "+j+path_destination
+    print("{0}: {1}".format(i, cmd))
+
+
 
 
