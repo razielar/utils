@@ -20,7 +20,7 @@ with open(pipeline_db, 'r') as pipeline_db:
         i= i.strip().split('\t')
         if re.search(r'bigWig', i[3]): #select bigWig files
             bigwig=i
-            if re.search(r'NONE', bigwig[6]):
+            if re.search(r'NONE', bigwig[6]): #non-strand specific
                 non_strand=bigwig
                 if re.search(r'MultipleRawSignal', non_strand[4]): #Multiple 
                     non_strand_multiple=non_strand[2]
@@ -28,11 +28,15 @@ with open(pipeline_db, 'r') as pipeline_db:
                 elif re.search(r'^RawSignal', non_strand[4]):
                     non_strand_unique=non_strand[2]
                     dict_non_strand['unique'].append(non_strand_unique)
-                    # if re.search(r'NONE', bigwig[6]): #strand-specific
-            #     non_strand=bigwig
-            #     if re.search(r'^RawSignal', non_strand[4]): #Multiple 
-            #         tmp_non_strand_unique=non_strand[2]
-            #         dict_non_strand['unique'].append(tmp_non_strand_unique)
+            if re.search(r'MATE2_SENSE', bigwig[6]): #strand-specific
+                strand=bigwig
+                if re.search(r'Multiple', strand[4]): #Multiple 
+                    strand_multiple=strand[2]
+                    dict_strand['multiple'].append(strand_multiple)
+                elif re.search(r'^Plus', strand[4]):
+                    print(strand[2])
+                    
+
 
 
 
