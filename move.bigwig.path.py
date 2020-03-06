@@ -52,7 +52,7 @@ final_unique=dict_non_strand['unique']+dict_strand['unique']
 for i,j in enumerate(final_unique):
     cmd="cp "+ j+ " "+ path_destination
     print("{0}: {1}".format(i,cmd))
-    # os.system(cmd)
+    os.system(cmd)
 
 # --- 2) Multiple: combine strand and non-strand specific bigwigs
 path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/multiple"
@@ -61,7 +61,7 @@ final_multiple=dict_non_strand['multiple']+dict_strand['multiple']
 for i,j in enumerate(final_multiple):
     cmd="cp "+ j+ " "+ path_destination
     print("{0}: {1}".format(i, cmd))
-    # os.system(cmd)
+    os.system(cmd)
 
 
 
