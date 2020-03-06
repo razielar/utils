@@ -1,14 +1,22 @@
 #!/usr/bin/env python 
 
 ### Move bigwig files to a specific path 
-
 import os
 import sys 
 import re
+import argparse
 
-os.chdir('/users/rg/ramador/D_me/RNA-seq/Pipelines/grape-nf-dm6-r6.29')
+parser=argparse.ArgumentParser(description='Move bigWig files from pipeline.db grape-nf')
 
-pipeline_db="pipeline.db"
+parser.add_argument("-i", "--input",
+                    help="pipeline.db obtained from grape-nf")
+parser.add_argument("-p", "--path",
+                    help="folder where you want to move bigWig files")
+
+args=parser.parse_args()
+
+pipeline_db=args.input
+path_destination=args.path 
 
 #We are going to store unique and multiple bigWig files: 
 keys=['multiple', 'unique']
@@ -37,25 +45,23 @@ with open(pipeline_db, 'r') as pipeline_db:
                     strand_unique=strand[2]
                     dict_strand['unique'].append(strand_unique)
 
-#Set the destination: 
-path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique"
 
 # --- 1) Unique: combine strand and non-strand specific bigwigs
 final_unique=dict_non_strand['unique']+dict_strand['unique']
 
 for i,j in enumerate(final_unique):
-    cmd="cp "+j+path_destination
+    cmd="cp "+ j+ " "+ path_destination
     print("{0}: {1}".format(i,cmd))
-    os.system(cmd)
+    # os.system(cmd)
 
 # --- 2) Multiple: combine strand and non-strand specific bigwigs
 path_destination=" /users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/multiple"
 final_multiple=dict_non_strand['multiple']+dict_strand['multiple']
 
 for i,j in enumerate(final_multiple):
-    cmd="cp "+j+path_destination
+    cmd="cp "+ j+ " "+ path_destination
     print("{0}: {1}".format(i, cmd))
-
+    # os.system(cmd)
 
 
 
