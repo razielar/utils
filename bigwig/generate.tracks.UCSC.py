@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python
 
 ### Generate UCSC tracks
@@ -59,9 +58,9 @@ with open(output, 'w') as result:
             ucsc_file=fir+" "+bigwig_file
             print("{0}: {1}".format(i,ucsc_file))
             result.write("{0}\n".format(ucsc_file))
-        else:
+        elif strand == "No" and unique == "No":
             print("working on it")
-            
+        
 
 
 
