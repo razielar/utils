@@ -27,7 +27,10 @@ unique=args.unique
 ### --- 
 
 ### --- Analysis:
-path=path.split('/')[4:] #pwd
+
+path=path.split('/')[5:] #pwd
+insert_elements=['public-docs.crg.es','rguigo','Data', 'ramador']
+path=insert_elements+path
 path="/".join(path)
 
 final=[]
