@@ -20,13 +20,11 @@ parser.add_argument("-u", "--unique", default=True,
 args=parser.parse_args()
 
 ### --- Input:
-path='/users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique'
-unique=True
-output="bigwig.Unique.India.UCSC.txt"
-metadata="Metadata.India.complete.tsv"
+path=args.path 
+metadata=args.metadata
+output=args.output
+unique=args.unique
 ### --- 
-
-i
 
 ### --- Analysis:
 path=path.split('/')[4:] #pwd
