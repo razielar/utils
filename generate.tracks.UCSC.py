@@ -1,8 +1,23 @@
 #!/usr/bin/env python
 
+### Generate UCSC tracks
 import os
 import sys
 import re
+import argparse
+
+parser=argparse.ArgumentParser(description='Generate UCSC tracks for copy/paste')
+
+parser.add_argument("-p", "--path",
+                    help="folder where bigwigs are saved use pwd")
+parser.add_argument("-m", "--metadata",
+                    help="metadata tsv file to obtain: Name[4] and ID[0]")
+parser.add_argument("-o", "--output", default="output.generate.track.UCSC.txt",
+                    help="output name; [default= %(default)s]")
+parser.add_argument("-u", "--unique", default=True,
+                    help="True if are unique bigwig files; [default= %(default)s]")
+
+args=parser.parse_args()
 
 ### --- Input:
 path='/users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique'
@@ -10,6 +25,8 @@ unique=True
 output="bigwig.Unique.India.UCSC.txt"
 metadata="Metadata.India.complete.tsv"
 ### --- 
+
+i
 
 ### --- Analysis:
 path=path.split('/')[4:] #pwd
