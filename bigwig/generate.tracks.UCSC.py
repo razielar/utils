@@ -30,6 +30,14 @@ output=args.output
 unique=args.unique
 ### --- 
 
+### tmp:
+
+path="/users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique"
+metadata="/nfs/users2/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique/Metadata.CRG.complete.tsv"
+strand="Yes"
+unique="Yes"
+output="tmp"
+
 ### --- Analysis:
 
 path=path.split('/')[5:] #pwd
@@ -60,7 +68,18 @@ with open(output, 'w') as result:
             result.write("{0}\n".format(ucsc_file))
         elif strand == "No" and unique == "No":
             print("working on it")
-        
+        elif strand == "Yes" and unique == "No":
+            print("working on it")
+        elif strand == "Yes" and unique == "Yes":
+            strands=["minus", "plus"]
+            for count,i1 in enumerate(strands):
+                fir="track type=bigWig name=\"Unique_{0}-{1}\"".format(j[1], i1)
+                fir_1=" description=\"A bigWig file\""
+                fir_final=fir+fir_1
+                bigwig_file="bigDataUrl=https://{0}/{1}.Unique.{2}Raw.bw".format(path,j[0],i1)
+                ucsc_file=fir_final+" "+bigwig_file
+                print("{0}: {1}".format(count, ucsc_file))
+                result.write("{0}\n".format(ucsc_file))
 
 
 
