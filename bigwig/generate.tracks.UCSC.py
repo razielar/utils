@@ -13,10 +13,10 @@ parser.add_argument("-p", "--path",
                     help="folder where bigwigs are saved use 'pwd'")
 parser.add_argument("-m", "--metadata",
                     help="metadata tsv file to obtain: Name[4] and ID[0]")
-parser.add_argument("-s", "--strand", default=False,
-                    help="True if stranded rna-seq having + and - strand; [default= %(default)s]")
-parser.add_argument("-u", "--unique", default=True,	
-                     help="True if are unique bigwig files; [default= %(default)s]")
+parser.add_argument("-s", "--strand", default="No",
+                    help="Yes if stranded rna-seq having + and - strand; [default= %(default)s]")
+parser.add_argument("-u", "--unique", default="Yes",	
+                     help="Yes if are unique bigwig files; [default= %(default)s]")
 parser.add_argument("-o", "--output", default="output.generate.track.UCSC.txt",
                     help="output name; [default= %(default)s]")
 
