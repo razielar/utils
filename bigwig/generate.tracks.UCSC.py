@@ -28,15 +28,6 @@ metadata=args.metadata
 strand=args.strand
 output=args.output
 unique=args.unique
-### --- 
-
-### tmp:
-
-path="/users/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique"
-metadata="/nfs/users2/rg/ramador/public_html/dme/UCSC_tracks/grape-nf-dm6.29/unique/Metadata.CRG.complete.tsv"
-strand="Yes"
-unique="Yes"
-output="tmp"
 
 ### --- Analysis:
 
