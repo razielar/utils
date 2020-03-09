@@ -53,37 +53,15 @@ final=final[1:] #remove header
 ### --- Save Results:
 with open(output, 'w') as result:
     for i,j in enumerate(final):
-        if strand:
-            # fir="track type=bigWig name=\"Unique_{0}\" description=\"A bigWig file\"".format(j[1])
-            # bigwig_file="bigDataUrl=https://{0}/{1}.Unique.raw.bw".format(path,j[0])
-            # ucsc_file=fir+" "+bigwig_file
-            # print("{0}: {1}".format(i,ucsc_file))
-            # result.write("{0}\n".format(ucsc_file))
-            print("working on it")
-        else:
+        if strand == "No" and unique == "Yes":
             fir="track type=bigWig name=\"Unique_{0}\" description=\"A bigWig file\"".format(j[1])
             bigwig_file="bigDataUrl=https://{0}/{1}.Unique.raw.bw".format(path,j[0])
             ucsc_file=fir+" "+bigwig_file
             print("{0}: {1}".format(i,ucsc_file))
             result.write("{0}\n".format(ucsc_file))
+        else:
+            print("working on it")
             
-
-
-strand='Yes'
-unique='Yes'
-
-if strand == "Yes" and unique == "Yes":
-    print("first")
-elif strand == "Yes" and unique == "No":
-    print("second")
-elif strand == "No" and unique == "Yes":
-    print("third")
-elif strand == "No" and unique == "No":
-    print("fourth")
-
-
-
-
 
 
 
