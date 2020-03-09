@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 
 ### Generate UCSC tracks
@@ -14,8 +15,8 @@ parser.add_argument("-m", "--metadata",
                     help="metadata tsv file to obtain: Name[4] and ID[0]")
 parser.add_argument("-s", "--strand", default=False,
                     help="True if stranded rna-seq having + and - strand; [default= %(default)s]")
-parser.add_argument("-d", "--description", default="",
-                    help="Add some initial description, like: Unique; [default= %(default)s]")
+parser.add_argument("-u", "--unique", default=True,	
+                     help="True if are unique bigwig files; [default= %(default)s]")
 parser.add_argument("-o", "--output", default="output.generate.track.UCSC.txt",
                     help="output name; [default= %(default)s]")
 
@@ -27,7 +28,7 @@ path=args.path
 metadata=args.metadata
 strand=args.strand
 output=args.output
-description=args.description
+unique=args.unique
 ### --- 
 
 ### --- Analysis:
@@ -53,11 +54,12 @@ final=final[1:] #remove header
 with open(output, 'w') as result:
     for i,j in enumerate(final):
         if strand:
-            fir="track type=bigWig name=\"Unique_{0}\" description=\"A bigWig file\"".format(j[1])
-            bigwig_file="bigDataUrl=https://{0}/{1}.Unique.raw.bw".format(path,j[0])
-            ucsc_file=fir+" "+bigwig_file
-            print("{0}: {1}".format(i,ucsc_file))
-            result.write("{0}\n".format(ucsc_file))
+            # fir="track type=bigWig name=\"Unique_{0}\" description=\"A bigWig file\"".format(j[1])
+            # bigwig_file="bigDataUrl=https://{0}/{1}.Unique.raw.bw".format(path,j[0])
+            # ucsc_file=fir+" "+bigwig_file
+            # print("{0}: {1}".format(i,ucsc_file))
+            # result.write("{0}\n".format(ucsc_file))
+            print("working on it")
         else:
             fir="track type=bigWig name=\"Unique_{0}\" description=\"A bigWig file\"".format(j[1])
             bigwig_file="bigDataUrl=https://{0}/{1}.Unique.raw.bw".format(path,j[0])
@@ -65,6 +67,22 @@ with open(output, 'w') as result:
             print("{0}: {1}".format(i,ucsc_file))
             result.write("{0}\n".format(ucsc_file))
             
+
+
+strand='Yes'
+unique='Yes'
+
+if strand == "Yes" and unique == "Yes":
+    print("first")
+elif strand == "Yes" and unique == "No":
+    print("second")
+elif strand == "No" and unique == "Yes":
+    print("third")
+elif strand == "No" and unique == "No":
+    print("fourth")
+
+
+
 
 
 
