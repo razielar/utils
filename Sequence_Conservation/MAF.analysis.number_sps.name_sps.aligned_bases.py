@@ -21,7 +21,10 @@ import pandas as pd
 
 def Select_highest_score(MAF_file):
     
-    """This function outputs an integer that select the highest score of a maf file"""
+    """
+    This function outputs an integer that select the highest score 
+    of a maf file
+    """
     
     total_score= []
     with open(MAF_file, 'r') as MAF_file:
@@ -35,13 +38,12 @@ def Select_highest_score(MAF_file):
     return int(max_index)
 
 
-# In[11]:
-
-
 def Obtain_NumberName_sp_Aligseq(maf_file):
     
-    """This function returns a list that contains the number, name of species and the number of
-    aligned sequences"""
+    """
+    This function returns a list that contains the number, name of species and 
+    the number of aligned sequences
+    """
     
     Max_Index= Select_highest_score(MAF_file= maf_file)
     
@@ -125,8 +127,10 @@ Gene_ID= pd.DataFrame(np.array(Gene_ID).reshape(len(Gene_ID), 1))
 
 pd_Final= pd.concat([Gene_ID.reset_index(drop= True), pd_Final], axis= 1)
 
+pd_Final.head()
+
 #Save the results: 
-pd_Final.to_csv('Table_OUTPUT/Alignments.output.table', sep= '\t', header=False, index= False)
+# pd_Final.to_csv('Table_OUTPUT/Alignments.output.table', sep= '\t', header=False, index= False)
 
 
 # In[227]:
