@@ -1,24 +1,17 @@
+#!/usr/bin/env python
 
-# coding: utf-8
-
-# # Final analysis of maf files
-# ## You obtain the number of species, specie names and number of sequences aligned
-# ### March 8th 2019
-
-# In[9]:
-
+### Analysis of MAFs 
+### Obtain the number of species, specie names and number of sequences aligned
+### March 8th 2019
 
 #Libraries: 
-
 import re, os, sys
-from Bio import AlignIO
+from Bio import AlignIO #Biopython 
 import numpy as np
 import pandas as pd
 
 
-# In[10]:
-
-
+### -- 1) Functions:
 def Select_highest_score(MAF_file):
     
     """
@@ -65,7 +58,8 @@ def Obtain_NumberName_sp_Aligseq(maf_file):
             specie_names.append(tmp_species_name)
         
         number_species= len(number_species)
-        aligned_bases= np.average( [float(i) for i in aligned_bases]) #Aligned bases: mean
+        #Aligned bases: mean
+        aligned_bases= np.average([float(i) for i in aligned_bases]) 
         specie_names= specie_names[1:]
         specie_names.insert(0, 'D_me')
         na_numAd= 27-number_species #Multiple alignment with 27 species
@@ -85,9 +79,6 @@ def Obtain_NumberName_sp_Aligseq(maf_file):
 
 # ## Start the script
 
-# In[12]:
-
-
 os.chdir('/users/rg/ramador/D_me/RNA-seq/Conservation.Analysis/Alignment_files/217_lncRNA_DGE/')
 
 FINAL_OUT=[]
@@ -101,9 +92,6 @@ for folder in os.listdir('Results_2/'):
         FINAL_OUT.append(file_output)
 
 pd_Final= pd.DataFrame(np.array(FINAL_OUT).reshape(len(FINAL_OUT), 30))
-
-
-# In[28]:
 
 
 ##### Match the Gene_ID: 
@@ -121,10 +109,6 @@ for folder in os.listdir('Results_2/'):
 Gene_ID= pd.DataFrame(np.array(Gene_ID).reshape(len(Gene_ID), 1))
 
 
-# In[34]:
-
-
-
 pd_Final= pd.concat([Gene_ID.reset_index(drop= True), pd_Final], axis= 1)
 
 pd_Final.head()
@@ -133,28 +117,7 @@ pd_Final.head()
 # pd_Final.to_csv('Table_OUTPUT/Alignments.output.table', sep= '\t', header=False, index= False)
 
 
-# In[227]:
-
-
 tmp
-
-
-# ## END
-
-# In[ ]:
-
-
-
-
-
-
-
-
-
-
-
-# In[218]:
-
 
 os.chdir('/users/rg/ramador/D_me/RNA-seq/Conservation.Analysis/Alignment_files/217_lncRNA_DGE/')
 
@@ -165,4 +128,8 @@ for folder in os.listdir('Results_2/'):
         file_path= folder_path+file
         tmp += 1
         print("{}\t{}".format(tmp, file_path))
+
+
+
+
 
