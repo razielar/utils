@@ -31,7 +31,7 @@ if args.type == "gene":
             i= i.rstrip().split('\t')
             if re.search(r'gene', i[2]):
                 count += 1
-                length=int(i[4])-(int(i[3])+1)
+                length=int(i[4])-(int(i[3])+1)+int(1)
                 strand=i[6]
                 gene_info=i[-1].split(';')[0:5]
                 gene_name=[gene_info[i].strip().replace('"','').split(' ')[1] for i in range(len(gene_info))][0:2]
@@ -56,7 +56,7 @@ elif args.type == "transcript":
             i= i.rstrip().split('\t')
             if re.search(r'transcript', i[2]):
                 count += 1
-                length=int(i[4])-(int(i[3])+1)
+                length=int(i[4])-(int(i[3])+1)+int(1)
                 strand=i[6]
                 gene_info=i[-1].split(';')[0:5]
                 gene_name=[gene_info[i].strip().replace('"','').split(' ')[1] for i in range(len(gene_info))][:-1]
