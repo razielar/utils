@@ -218,14 +218,14 @@ input_bamQC.tsv
 
 ### [Qualimap:](http://qualimap.bioinfo.cipf.es/)
 
-*bamqc_array.sh*: job array
+*Qualimap_array.sh*: job array
 
 Modify: **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to */dev/null* if you don't want to obtain logs.
 You can also modify the **gtf file**
 
 ```{r}
 
-qsub bamqc_array.sh
+qsub Qualimap_array.sh
 
 ```
 ### [Picard](https://broadinstitute.github.io/picard/)
@@ -271,7 +271,7 @@ python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed 50 output_name.bed
 
 **Description:**
 
-This script has two options either **gene** or **transcript**. For **gene** from a gtf file you obtain: gene id, gene name, gene type, gene length and strand. For **transcript** you obtain gene id, gene name, transcript id, transcript name, transcript type (it is the same as gene type), transcript length and strand. 
+This script has two options either **gene** or **transcript**. For **gene** from a gtf file you obtain: gene id, gene name, gene type, gene length and strand. For **transcript** you obtain gene id, gene name, transcript id, transcript name, transcript type (it is the same as gene type), transcript length and strand.
 
 **Gene Usage:**
 
@@ -287,9 +287,3 @@ This script has two options either **gene** or **transcript**. For **gene** from
 Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=transcript.example.tsv --type=transcript
 
 ```
-
-
-
-
-
-
