@@ -131,5 +131,3 @@ for folder in os.listdir('Results_2/'):
 
 
 
-
-
