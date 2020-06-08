@@ -1,0 +1,22 @@
+# Change PREFIX to C-x 
+set -g prefix C-x
+unbind C-b
+
+# Reload our main tmux conf: 'PREFIX s'
+bind s source-file ~/.tmux.conf \; display "Source '.tmux.conf'"
+
+# Splitting Panes: 
+bind 2 split-window -v
+bind 3 split-window -h
+
+# Movement Keys: 
+bind-key -n M-Left select-pane -L
+bind-key -n  M-Right select-pane -R 
+bind-key -n M-Up select-pane -U
+bind-key -n M-Down select-pane -D
+
+
+
+
+
+
