@@ -5,6 +5,8 @@
 #$ -tc 2
 #$ -q rg-el7
 #$ -l virtual_free=16G,h_rt=24:00:00
+#$ -m abe
+#$ -M razielar.amador@crg.eu
 #$ -cwd
 #$ -e cluster_out/
 #$ -o cluster_out/
