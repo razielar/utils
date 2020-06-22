@@ -210,7 +210,7 @@ If you just run [grape-nf](https://github.com/guigolab/grape-nf) run: *bamqc_inp
 
 ```{r}
 
-python ~/Utils/bamqc_input.py pipeline.db\
+python ~/Utils/QC_Bam.files/bamqc_input.py pipeline.db\
 input_bamQC.tsv
 
 ```
