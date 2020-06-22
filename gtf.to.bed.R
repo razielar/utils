@@ -70,7 +70,7 @@ Bed_file$ID <- ID$ID
 
 if(opt$length){
   
-  Bed_file$Length <- abs(Bed_file[,2] - Bed_file[,3])
+  Bed_file$Length <- abs(Bed_file[,2] - Bed_file[,3])-1 #-1 it was aggregated to obtain same results as BioMaRt 
   
   cat("The ID:", opt$field ,"was used to produce the Bed_file", "\n")
   cat("GTF file into Bed file", "\n")
