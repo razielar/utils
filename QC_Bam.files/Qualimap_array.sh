@@ -10,24 +10,26 @@
 #$ -o cluster_out/
 #$ -e cluster_out/
 
-#job array:
+# Job array:
 Input=${SGE_TASK_ID}
 
-#cluster_out:
+# Create 'cluster_out': 
 mkdir cluster_out
 
+#--- Take bam file and sample name ---#
 file=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $3'}) #bam_file
 newname=$(sed -n ${Input}p input_bamQC.tsv | awk {'print $1'}) #sample_name
+
+# Generate the specific sample folder: 
 mkdir -p  QC/$newname
-gtf=/nfs/users2/rg/projects/references/Annotation/D.melanogaster/dmel_r6.22/mRNA_ncRNA/ucsc.dmel-all-r6.22.mRNA.nRNA.190.length.selection.type.no.Overlapping.Sorted.gtf
 
-#--- move to local drive for a better performance
-# cd ~/tmp #DON'T UNDERSTAND 
+#--- GTF file ---#
+gtf=/nfs/users2/rg/projects/references/Annotation/D.melanogaster/dmel_r6.29/mRNA_ncRNA/ucsc.dmel-all-r6.29.mRNA.nRNA.190.length.selection.type.sorted.no.Overlapping.Sorted.gtf
 
-#---Load qualimap module ---#
+#--- Load qualimap module ---#
 module load qualimap
 
-#---Run qualimap bamqc ---# 
+#--- Run qualimap bamqc ---# 
 qualimap bamqc --java-mem-size=4G \
         -bam $file \
         -gff $gtf \
@@ -35,5 +37,8 @@ qualimap bamqc --java-mem-size=4G \
         -outfile ${newname}_bamqc.pdf \
         -outformat PDF
 
+# --- Rename genome_results.txt to sample_name_bamqc.txt ---# 
 mv QC/$newname/genome_results.txt QC/$newname/${newname}_bamqc.txt
+
+
 
