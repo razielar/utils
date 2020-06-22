@@ -256,8 +256,8 @@ qsub Picard_array.sh
 
 *Description:* this is not a array script you need to run it. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*. The final output filename is: **QC_Data.csv**
 
-* **1)** Copy the **header.txt** file
-* **2)** And run the script in the following way: 
+* **1)** Copy the **header.txt** file into *~/QC/QC*
+* **2)** And run the script in the following way:
 
 ```{r}
 path=/no_backup_isis/rg/ramador/D_me/RNA-seq/grape-nf-modENCODE/QC
