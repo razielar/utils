@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path=/no_backup_isis/rg/ramador/D_me/RNA-seq/grape-nf-modENCODE/QC
+path=$1 
 
 cd ${path}/QC/
 
