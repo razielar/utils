@@ -238,7 +238,7 @@ qsub Qualimap_array.sh
 *Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics** <br/>
 *Picard_array.sh*: job array
 
-*Description:* Run in the same folder as *Qualimap_array.sh*. And don't worry for the rest. 
+*Description:* Run in the same folder as *Qualimap_array.sh*. And don't worry for the rest.
 
 *Modify:*
 * **1)** Must modify: **-t** according of the number of bam files that you want to analyze.
@@ -254,11 +254,13 @@ qsub Picard_array.sh
 
 *merge.QC_files.sh*
 
-Copy the **header** file. <br/>
-Modify:  **path**. <br/>
-The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*
+*Description:* this is not a array script you need to run it. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*. The final output filename is: **QC_Data.csv**
 
-The final output filename is: **QC_Data.csv**
+* **1)** Copy the **header** file
+Modify:  **path**. <br/>
+
+
+
 
 ## 10) <a id='tss'></a> Obtain a window around the TSS
 
