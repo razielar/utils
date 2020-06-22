@@ -25,7 +25,7 @@ do cd $i
 done
 
 ###--- Concatenate the 'header' file with all *.qcData files 
-cat header *qcData | column -t > QC_details 
+cat header.txt *qcData | column -t > QC_details 
 
 ###----- Generate the file with the 'sample names'
 ls *qcData | sed -e "1iSample" | sed 's/.qcData//g' > samples
