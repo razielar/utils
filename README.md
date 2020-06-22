@@ -220,8 +220,13 @@ input_bamQC.tsv
 
 *Qualimap_array.sh*: job array
 
-Modify: **-t** according of the number of bam files that you want to analyze. You can also modify *-o* and *-e* to */dev/null* if you don't want to obtain logs.
-You can also modify the **gtf file**
+*Description:* You don't need to worry to create cluster_out folder or any type of subdirectory. Uses the current directory so no absolute paths are needed. 
+
+*Modify:*
+
+* **1)** Must modify: **-t** according of the number of bam files that you want to analyze.
+* **2)** You can modify the number of parallel jobs by modify: **-tc**
+* **3)** You can also modify the **gtf file**, currently is using: **gtf dm6 r6.29**
 
 ```{r}
 
