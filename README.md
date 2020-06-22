@@ -220,7 +220,7 @@ input_bamQC.tsv
 
 *Qualimap_array.sh*: job array
 
-*Description:* You don't need to worry to create cluster_out folder or any type of subdirectory. Uses the current directory so no absolute paths are needed. 
+*Description:* You don't need to worry to create cluster_out folder or any type of subdirectory. Uses the current directory so no absolute paths are needed.
 
 *Modify:*
 
@@ -238,7 +238,12 @@ qsub Qualimap_array.sh
 *Picard_array.sh*: **CollectAlignmentSummaryMetrics** and **CollectGcBiasMetrics** <br/>
 *Picard_array.sh*: job array
 
-Modify: **-t** according of the number of bam files that you want to analyze. You can modify **reference genome**. If you just run: *bamqc_array.sh* disable the option to create the sample folders.
+*Description:* Run in the same folder as *Qualimap_array.sh*. And don't worry for the rest. 
+
+*Modify:*
+* **1)** Must modify: **-t** according of the number of bam files that you want to analyze.
+* **2)** You can modify the number of parallel jobs by modify: **-tc**
+* **3)** You can modify **reference genome**.
 
 ```{r}
 
