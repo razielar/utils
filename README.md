@@ -288,7 +288,9 @@ python ~/Utils/ObtainWindow_TSS.bed.py input_BedFile.bed 50 output_name.bed
 
 **Description:**
 
-This script has two options either **gene** or **transcript**. For **gene** from a gtf file you obtain: gene id, gene name, gene type, gene length and strand. For **transcript** you obtain gene id, gene name, transcript id, transcript name, transcript type (it is the same as gene type), transcript length and strand.
+This script has two options either **gene**, **transcript** or **exon**.
+* For **gene** from a gtf file you obtain: gene id, gene name, gene type, gene length and strand.
+* For **transcript** you obtain gene id, gene name, transcript id, transcript name, transcript type (it is the same as gene type), transcript length and strand.
 
 **Gene Usage:**
 
