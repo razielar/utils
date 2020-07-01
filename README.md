@@ -312,7 +312,13 @@ Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=transcript.exam
 
 *calculate.overlapping.genic.exonic.sh*
 
-**Description:**
+**Description:** to calculate the overlapping between the genic-exonics and their neighbor PCGs we used `bedtools intersect`. You need to modify three things to run again this script:
+
+* 1) Bed file by exons: this means that you need the chr, start and end for each exon per gene.
+
+* 2) The complete list of all genic-exonics with their neighbor PCGs.
+
+* 3) Modify -t for the number of rows from the the list of all genic-exonics. 
 
 ```{r}
 
