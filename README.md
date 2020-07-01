@@ -13,6 +13,7 @@
 9. [QC_Bam.files](#qc)
 10. [Obtain a window around the TSS of some genes](#tss)
 11. [GTF analysis](#gtf)
+12. [Calculate the overlapping between genic-exonics and their neighbor PCGs](#over)
 
 ## 1) <a id='rows'></a> Rows into columns:
 
@@ -304,5 +305,17 @@ This script has two options either **gene**, **transcript** or **exon**.
 ```{r}
 
 Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=transcript.example.tsv --type=transcript
+
+```
+
+## 12) <a id='over'></a> Calculate the overlapping between genic-exonics and their neighbor PCGs:
+
+*calculate.overlapping.genic.exonic.sh*
+
+**Description:**
+
+```{r}
+
+qsub calculate.overlapping.genic.exonic.sh
 
 ```
