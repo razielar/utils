@@ -258,7 +258,8 @@ qsub Picard_array.sh
 *Description:* this is not a array script you need to run it. The suffix of the input files are: *_metrics.txt*, *_bamqc.txt* and *_GC_summary.txt*. The final output filename is: **QC_Data.csv**
 
 * **1)** Copy the **header.txt** file into *~/QC/QC*
-* **2)** And run the script in the following way:
+* **2)** Run the script in *~/QC*
+* **3)** And run the script in the following way:
 
 ```{r}
 path=/no_backup_isis/rg/ramador/D_me/RNA-seq/grape-nf-modENCODE/QC
@@ -318,7 +319,7 @@ Utils/GTF.analysis.GeneIDName.py  --input=dme.r6.29.gtf --output=transcript.exam
 
 * **2)** The complete list of all genic-exonics with their neighbor PCGs.
 
-* **3)** Modify -t for the number of rows from the the list of all genic-exonics. 
+* **3)** Modify -t for the number of rows from the the list of all genic-exonics.
 
 ```{r}
 
