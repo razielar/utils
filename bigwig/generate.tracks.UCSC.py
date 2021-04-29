@@ -48,7 +48,7 @@ def main(result_name, metadata, strand, unique, path):
                     fir_final=fir+fir_1
                     bigwig_file="bigDataUrl=https://{0}/{1}.Unique.{2}Raw.bw".format(path,i[0], j)
                     ucsc_file=fir_final+" "+bigwig_file
-                    print("{0}: {1}".format(count, ucsc_file))
+                    print("{0}: {1}".format(count+1, ucsc_file))
                     result.write("{0}\n".format(ucsc_file))
             elif strand == "Yes" and unique == "No":
                 print("Need to add this part")
