@@ -46,7 +46,7 @@ def manage_met(met_input):
     with open(met_input, 'r') as metadata:
         for i in metadata:
             i=i.strip().split('\t')
-            metadata=i[0]+" "i[1]
+            metadata=i[0]+" "+i[1]
             metadata=metadata.split(' ')
             final.append(metadata)
     return(final)
