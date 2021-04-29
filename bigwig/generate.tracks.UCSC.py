@@ -21,14 +21,6 @@ parser.add_argument("-o", "--output", default="output.generate.track.UCSC.txt",
 
 args=parser.parse_args()
 
-### --- Input:
-#path=args.path 
-#metadata=args.metadata
-#strand=args.strand
-#output=args.output
-#unique=args.unique
-
-### --- Analysis:
 def obtain_path(input_path):
     path=input_path.split('/')[5:] #pwd
     insert_elements=['public-docs.crg.es','rguigo','Data', 'ramador']
@@ -45,20 +37,24 @@ def manage_met(met_input):
             final.append(result)
     return(final)
 
-### --- Save Results:
 def main(result_name, metadata, strand, unique, path):
     with open(result_name, 'w') as result:        
         for i in metadata:
             if strand == "Yes" and unique == "Yes":
                 strands=["minus", "plus"]
                 for count,j in enumerate(strands):
-                    fir="track type=bigWig name=\"Unique_{0}-{1}\"".format(i[1], j)
+                    fir="track type=bigWig name=\"Unique_{0}-{1}\"".format(j,i[1])
                     fir_1=" description=\"A bigWig file\""
                     fir_final=fir+fir_1
                     bigwig_file="bigDataUrl=https://{0}/{1}.Unique.{2}Raw.bw".format(path,i[0], j)
                     ucsc_file=fir_final+" "+bigwig_file
                     print("{0}: {1}".format(count, ucsc_file))
                     result.write("{0}\n".format(ucsc_file))
+            elif strand == "Yes" and unique == "No":
+                print("Need to add this part")
+            elif strand == "No" and unique == "Yes":
+                print("check GitHub")
+
 
 #with open(output, 'w') as result:
 #    for i,j in enumerate(final):
