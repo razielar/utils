@@ -38,16 +38,18 @@ def manage_met(met_input):
     return(final)
 
 def main(result_name, metadata, strand, unique, path):
+    """
+    Main function to generate the USCS tracks
+    """
     with open(result_name, 'w') as result:        
         for i in metadata:
             if strand == "Yes" and unique == "Yes":
                 strands=["minus", "plus"]
                 for count,j in enumerate(strands):
-                    fir="track type=bigWig name=\"Unique_{0}-{1}\"".format(j,i[1])
-                    fir_1=" description=\"A bigWig file\""
-                    fir_final=fir+fir_1
+                    track_name="track type=bigWig name=\"Unique_{0}-{1}\"".format(j,i[1])
+                    description=" description=\"A bigWig file\""
                     bigwig_file="bigDataUrl=https://{0}/{1}.Unique.{2}Raw.bw".format(path,i[0], j)
-                    ucsc_file=fir_final+" "+bigwig_file
+                    ucsc_file=track_name+description+" "+bigwig_file
                     print("{0}: {1}".format(count+1, ucsc_file))
                     result.write("{0}\n".format(ucsc_file))
             elif strand == "Yes" and unique == "No":
