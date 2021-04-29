@@ -36,17 +36,19 @@ insert_elements=['public-docs.crg.es','rguigo','Data', 'ramador']
 path=insert_elements+path
 path="/".join(path)
 
+
 final=[]
 with open(metadata, 'r') as metadata:
     for i in metadata:
         i=i.strip().split('\t')
-        metadata=i[0]+" "+i[4]
+        metadata=i[0]+" "+i[3]
         metadata=metadata.split(' ')
         if not re.search(r'NA', metadata[1]): #use only with description
             desired=metadata
             final.append(desired)
 
-final=final[1:] #remove header
+# final=final[1:] #remove header
+
 
 ### --- Save Results:
 with open(output, 'w') as result:
