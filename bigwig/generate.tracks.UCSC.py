@@ -47,7 +47,7 @@ def main(result_name, metadata, strand, unique, path):
                 strands=["minus", "plus"]
                 for count,j in enumerate(strands):
                     track_name="track type=bigWig name=\"Unique_{0}-{1}\"".format(j,i[1])
-                    description=" description=\"A bigWig file\""
+                    description=" description=\"{}\"".format(i[1])
                     bigwig_file="bigDataUrl=https://{0}/{1}.Unique.{2}Raw.bw".format(path,i[0], j)
                     ucsc_file=track_name+description+" "+bigwig_file
                     print("{0}: {1}".format(count+1, ucsc_file))
