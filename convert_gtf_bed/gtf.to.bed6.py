@@ -52,5 +52,5 @@ if __name__ == "__main__":
         bed_info=bed6_minimalInfo(input_gtf=args.gtf)
     elif args.type == "verbose":
         bed_info=verbose_bed6info(input_gtf=args.gtf)
-    #save_results(info=bed_info, output_name=args.output)
+    save_results(info=bed_info, output_name=args.output)
 
