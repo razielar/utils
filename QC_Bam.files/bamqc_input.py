@@ -12,7 +12,7 @@ ab_file=[]
 with open(pipeline_db, 'r') as pipeline_db:
     for i in pipeline_db:
         i= i.rstrip().split('\t')
-        if re.search(r'GenomeAlignments', i[4]): #Select bam aligned to genome
+        if re.search(r'TranscriptomeAlignments', i[4]): #Select bam aligned to transcriptome
             tmp_sample= i[0]
             sample_name.append(tmp_sample)
             tmp_file= i[2]
