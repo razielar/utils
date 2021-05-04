@@ -30,7 +30,9 @@ def verbose_bed6info(input_gtf):
     with open(input_gtf, 'r') as gtf:
         for i in gtf:
             i=i.strip().split('\t')
-            attribute=i[-1].split(';')[0].replace("gene_id \"", "").replace("\"", "")+"_"+i[2]
+            gene=i[-1].split(';')[0].replace("gene_id \"", "").replace("\"", "") #+"_"+i[2]
+            transcript=i[-1].split(';')[2].replace("transcript_id \"", "").replace("\"", "").strip()
+            attribute= gene +"_"+ transcript + "_" + i[2] if transcript else gene + "_" + gene + "_" + i[2]
             info=i[0:7]
             del info[1], info[4], info[1]
             info.insert(1, attribute)
