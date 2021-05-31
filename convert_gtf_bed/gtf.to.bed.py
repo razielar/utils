@@ -60,7 +60,7 @@ def save_results_bed6(info,output_name):
 def save_results_bed12(info,output_name):
     with open(output_name, 'w') as out:
         for i in info:
-            out.write(f'{i[0]}\t{i[1]}\t{i[2]}\t{i[4]}\t0\t{i[3]}\t0\t2\t255,0,0\t1\t1\t1\n')
+            out.write(f'{i[0]}\t{i[1]}\t{i[2]}\t{i[4]}\t0\t{i[3]}\t0\t0\t0\t0\t1,2,3,4,5,\t1,2,3,4,5\n')
 
 
 if __name__ == "__main__":
