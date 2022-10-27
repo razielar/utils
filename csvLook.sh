@@ -6,7 +6,7 @@ csvLook ()
     if [[ -f "$1" ]] && [[ "$1" == *.csv ]] ; then
 	column -t -s ',' "$1" | less -S
     else
-	echo "'$1' file not found"
+	echo "'$1' file not found or incorrect format"
     fi
 }
 
